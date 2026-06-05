@@ -31,7 +31,9 @@ REGION_COLORS = ['#2563EB', '#16A34A', '#D97706', '#DC2626']
 # --- Load Data ---
 @st.cache_data
 def load_data():
-    df = pd.read_csv('../Data/superstore.csv', encoding='latin-1')
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+df = pd.read_csv(os.path.join(BASE_DIR, 'Data', 'superstore.csv'), encoding='latin-1')
     df['Order Date'] = pd.to_datetime(df['Order Date'], dayfirst=True, format='mixed')
     df['Ship Date'] = pd.to_datetime(df['Ship Date'], dayfirst=True, format='mixed')
     df['Month'] = df['Order Date'].dt.month_name()
